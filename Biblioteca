@@ -1,0 +1,50 @@
+class usuario:
+    def __init__(self,nombre,id_usuario):
+        self._nombre=nombre
+        self._id_usuario=id_usuario
+    def mostrar_info(self):
+        pass
+   
+    def describir(self):
+        raise NotImplementedError("Este método debe ser implementado por las subclases")
+   
+    def get_nombre(self):
+        return self._nombre
+   
+    def set_nombre(self, nombre):
+        if len(nombre) > 0:
+            self._nombre = nombre
+        else:
+            raise ValueError("La marca no puede estar vacía")
+        #.........
+    def get_id_ususario(self):
+        return self._nombre
+   
+    def get_id_usuario(self, id_usuario):
+        if len(id_usuario) > 0:
+            self._id_usuario = id_usuario
+        else:
+            raise ValueError("La marca no puede estar vacía")
+   
+class Lector(usuario):
+    def __init__(self,nombre,id_usuario,prestamos):
+        super().__init__(nombre,id_usuario)
+        self._prestamos=prestamos
+    def describir(self):
+        print(f"lector: {self._nombre}, id: {self._id_usuario}, prestamo: {self._prestamos}")
+    def agregar_prestamo(self, prestamo):
+        self.prestamos.append(prestamo)
+       
+class Bibliotecario(usuario):
+    def __init__(self, nombre, id_usuario):
+        super().__init__(nombre, id_usuario)
+ 
+    def mostrar_info(self):
+        print(f"Bibliotecario: {self._nombre}, ID: {self._id_usuario}")
+ 
+    def gestionar_inventario(self, publicacion, accion, inventario):
+        if accion == 'agregar':
+            inventario.agregar_publicacion(publicacion)
+        elif accion == 'eliminar':
+            inventario.eliminar_publicacion(publicacion)
+has context menu
